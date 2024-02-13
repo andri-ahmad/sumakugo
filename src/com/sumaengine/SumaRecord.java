@@ -2,11 +2,11 @@ package com.sumaengine;
 
 public class SumaRecord {
 	
-	private long idSuma;
+	private String idSuma;
 	  private String packageName;
 	  private long kodeProduk;
 	  private long subsNo;
-	  private long viewcardNo;
+	  private String viewcardNo;
 	  private java.sql.Time duration;
 	  private java.sql.Timestamp initDate;
 	  private java.sql.Timestamp limitDate;
@@ -31,11 +31,11 @@ public class SumaRecord {
 	  private String subVendorStatus;
 
 
-	  public long getIdSuma() {
+	  public String getIdSuma() {
 	    return idSuma;
 	  }
 
-	  public void setIdSuma(long idSuma) {
+	  public void setIdSuma(String idSuma) {
 	    this.idSuma = idSuma;
 	  }
 
@@ -67,11 +67,11 @@ public class SumaRecord {
 	  }
 
 
-	  public long getViewcardNo() {
+	  public String getViewcardNo() {
 	    return viewcardNo;
 	  }
 
-	  public void setViewcardNo(long viewcardNo) {
+	  public void setViewcardNo(String viewcardNo) {
 	    this.viewcardNo = viewcardNo;
 	  }
 

@@ -9,6 +9,7 @@ public class KugoHelper extends TimerTask {
 	static DbmysqlLayer mysqlDBLayer1;
 	public static int counterRun = 1;
 	static Logger log = Logger.getLogger(KugoHelper.class.getName());
+	static SumaProcessor sumaproc;
 	
 	
 	public void run() 
@@ -17,7 +18,13 @@ public class KugoHelper extends TimerTask {
 		log.info("TIMER TASK INITIATED... ["+ counterRun + "]");
 		
 		try 
-		{	        
+		{	
+			/*
+			 * create instance suma processor
+			 */
+			sumaproc = new SumaProcessor();
+			sumaproc.loadProperties();
+			
 			
 			// Get Connection to the DB
 	        log.info("----------------------------");
@@ -67,11 +74,11 @@ public class KugoHelper extends TimerTask {
 	            	 * buat object sumarecord sr1
 	            	 */
 	            	SumaRecord sr1 = new SumaRecord();
-	            	sr1.setIdSuma(rs.getLong(1));
+	            	sr1.setIdSuma(rs.getString(1));
 	            	sr1.setPackageName(rs.getString(2));
 	            	sr1.setKodeProduk(rs.getLong(3));
 	            	sr1.setSubsNo(rs.getLong(4));
-	            	sr1.setViewcardNo(rs.getLong(5));
+	            	sr1.setViewcardNo(rs.getString(5));
 	            	sr1.setTblRef(rs.getString(13));
 	            	sr1.setCommandType(rs.getLong(14));
 	            	sr1.setStatusSend(rs.getLong(15));
@@ -100,6 +107,13 @@ public class KugoHelper extends TimerTask {
 	            	 * call method nya disini 
 	            	 */
 	            	
+	            	try {
+	            		sumaproc.cardInquiry(sr1.getIdSuma(),sr1.getViewcardNo());
+	            		
+	            	} catch (Exception exp ) {
+	            		
+	            		log.error(exp.toString());
+	            	}
 	            	
 	            	/*
 	            	 * jika mendapatkan response sukses
@@ -130,7 +144,7 @@ public class KugoHelper extends TimerTask {
 	            		
 	            		//mysqlDBLayer1.updateQuery("UPDATE PREPAID.BOM SET sys_update_date=sysdate, STATUS = 'FAILED',NOTES=SUBSTR('"+exp.toString()+"',1,400)  WHERE ID = " + rs.getString(1) );
 	                    
-	                    log.info("FINISH with Exception, CLOSING DB CONNECTION & " + exp.toString());
+	                    log.error("FINISH with Exception, CLOSING DB CONNECTION & " + exp.toString());
 	            		
 	            	}     
 	            	

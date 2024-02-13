@@ -17,7 +17,7 @@ java {
     }
 }
 
-version = '1.0.0'
+
 
 tasks.withType(JavaCompile).configureEach {
     javaCompiler = javaToolchains.compilerFor {
@@ -67,6 +67,8 @@ dependencies {
 sourceSets.main.java.srcDirs = ['src']
 
 sourceSets.main.resources.srcDirs = ['properties']
+
+version = '1.0.1'
 
 application {
     mainClass = 'com.sumaengine.KugoMain'
