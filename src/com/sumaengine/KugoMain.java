@@ -19,7 +19,7 @@ public class KugoMain {
 		Runtime.getRuntime().addShutdownHook( new Thread(() -> {
 	        log.info("Oops! Trapped exit signal...");
 	            synchronized (currThread) {
-	            	currThread.notify();	
+	            	currThread.notifyAll();	
 	            	try {
 	            		currThread.join();
 	                    //System.out.println("... Gone");
@@ -39,12 +39,15 @@ public class KugoMain {
 		
 		//creating a new instance of timer class
         Timer timer = new Timer();
-        TimerTask task = new KugoHelper();
- 
+        TimerTask taskInquiry = new KugoHelperInquiry();
+        //TimerTask task = new KugoHelperCloseAccount();
+        TimerTask taskOpenAccount = new KugoHelperOpenAccount();
+        
         //instance of date object for fixed-rate execution
         Date date = new Date();
  
-        timer.scheduleAtFixedRate(task, date, 5000);
+        timer.scheduleAtFixedRate(taskInquiry, date, 5000);
+        timer.scheduleAtFixedRate(taskOpenAccount, date, 5000);
          
         //System.out.println("Timer running");
         try {

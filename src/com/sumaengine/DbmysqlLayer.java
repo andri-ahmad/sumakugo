@@ -24,7 +24,7 @@ public class DbmysqlLayer {
     
 	public DbmysqlLayer() {
 	    //System.out.println("Creating mySQL DataBaseLayer class [DONE]");
-	    log.info("Creating mySQL DataBaseLayer class [DONE]");
+	    //log.info("Creating mySQL DataBaseLayer class [DONE]");
 	}
     
     public void loadProperties(String propFileName) throws SQLException, FileNotFoundException, IOException {
@@ -55,23 +55,17 @@ public class DbmysqlLayer {
         String USER = this.dataBaseProperties.getProperty("Username").toString();
         String PASS = this.dataBaseProperties.getProperty("Password").toString();
         
-        //System.out.println("Database parameter loaded...");
-        //System.out.println("JDBC_DRIVER: "+ JDBC_DRIVER);
-        //System.out.println("URL: "+DB_URL);
-        //System.out.println("Username: "+USER);
-        //System.out.println("Password: "+"XXXXXXXXX");
-        
-        log.info("Database parameter loaded...");
-        log.info("JDBC_DRIVER: "+ JDBC_DRIVER);
-        log.info("URL: "+ DB_URL);
-        log.info("Username: " + USER);
-        log.info("Password: XXXXXXXX");
+        //log.info("Database parameter loaded...");
+        //log.info("JDBC_DRIVER: "+ JDBC_DRIVER);
+        //log.info("URL: "+ DB_URL);
+        //log.info("Username: " + USER);
+        //log.info("Password: XXXXXXXX");
     	
     	if (mysqlConn == null) {
             try {
             	// register driver
             	//System.out.println("Connecting..");
-            	log.info("Connecting..");
+            	//log.info("DB Connecting..");
                 Class.forName(JDBC_DRIVER);
                 mysqlConn = DriverManager.getConnection(DB_URL, USER, PASS);           
                 //System.out.println("DB Connected!");

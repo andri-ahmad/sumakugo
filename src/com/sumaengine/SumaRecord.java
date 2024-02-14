@@ -4,7 +4,7 @@ public class SumaRecord {
 	
 	private String idSuma;
 	  private String packageName;
-	  private long kodeProduk;
+	  private String kodeProduk;
 	  private long subsNo;
 	  private String viewcardNo;
 	  private java.sql.Time duration;
@@ -49,11 +49,11 @@ public class SumaRecord {
 	  }
 
 
-	  public long getKodeProduk() {
+	  public String getKodeProduk() {
 	    return kodeProduk;
 	  }
 
-	  public void setKodeProduk(long kodeProduk) {
+	  public void setKodeProduk(String kodeProduk) {
 	    this.kodeProduk = kodeProduk;
 	  }
 
