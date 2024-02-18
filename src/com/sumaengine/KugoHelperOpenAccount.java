@@ -280,7 +280,7 @@ public class KugoHelperOpenAccount extends TimerTask {
 	            	
 	        	// End do
 	        	
-	        } // End else if rs.net
+	        } // End else if rs.next
 	        
 			
 			

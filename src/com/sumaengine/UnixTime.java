@@ -11,7 +11,7 @@ public class UnixTime {
         //2. data body, 2 adalah date
         
         long unixTimeGw = System.currentTimeMillis();
-        Date now = new Date(unixTimeGw);
+        Date now = new Date(unixTimeGw); 
         
         // Millisecond Format
         System.out.println("System.currentTime miliseconds Format = "+ unixTimeGw);

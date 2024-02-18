@@ -42,12 +42,18 @@ public class KugoMain {
         TimerTask taskInquiry = new KugoHelperInquiry();
         //TimerTask task = new KugoHelperCloseAccount();
         TimerTask taskOpenAccount = new KugoHelperOpenAccount();
+        TimerTask taskRequestMinipack = new KugoHelperRequestMinipack(); 
+        TimerTask taskRefreshPackage = new KugoHelperRefreshPackage();
+        TimerTask taskRefreshAccount = new KugoHelperRefreshAccount();
         
         //instance of date object for fixed-rate execution
         Date date = new Date();
  
         timer.scheduleAtFixedRate(taskInquiry, date, 5000);
         timer.scheduleAtFixedRate(taskOpenAccount, date, 5000);
+        timer.scheduleAtFixedRate(taskRequestMinipack, date, 5000);
+        timer.scheduleAtFixedRate(taskRefreshPackage, date, 5000);
+        timer.scheduleAtFixedRate(taskRefreshAccount, date, 5000);
          
         //System.out.println("Timer running");
         try {

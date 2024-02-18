@@ -15,12 +15,18 @@ public class TimerTesting3 {
         
         //creating a new instance of timer class
         Timer timer = new Timer();
-        TimerTask task = new Helper();
+        TimerTask task = new Helper(); 
+        TimerTask task2 = new Helper2(); 
+        
+        Timer timer2 = new Timer();
  
         //instance of date object for fixed-rate execution
         Date date = new Date();
  
+        //timer.scheduleAtFixedRate(task, date, 5000);
+        
         timer.scheduleAtFixedRate(task, date, 5000);
+        timer2.scheduleAtFixedRate(task2, date, 5000);
          
         System.out.println("Timer running");
         synchronized(obj)

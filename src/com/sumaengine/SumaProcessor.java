@@ -281,11 +281,11 @@ public class SumaProcessor {
                 	
                 	if (resultInt == 0 ) {
                 		aSumaResponse.setResponseStatus("1");
-                		log.info("Summary; Authorizition: "+ cardNumber +"; "+ productName+"; "+ productId +"; Success; 0x" + resultHex.toUpperCase());
+                		log.info("Summary; Authorization: "+ cardNumber +"; "+ productName+"; "+ productId +"; Success; 0x" + resultHex.toUpperCase());
                 		
                 	} else {
                 		aSumaResponse.setResponseStatus("-1");
-                		log.info("Summary; Authorizition: "+ cardNumber +"; "+ productName+"; "+ productId +"; Not Success; 0x" + resultHex.toUpperCase());
+                		log.info("Summary; Authorization: "+ cardNumber +"; "+ productName+"; "+ productId +"; Not Success; 0x" + resultHex.toUpperCase());
                 		
                 	}               	
                 	
@@ -556,10 +556,10 @@ public class SumaProcessor {
         CAS_Version = this.sumaProperties.getProperty("SumaCASVersion").toString();
         
         try {
-           log.info("Connecting to " + sumaServer + " on port " + sumaPort);
+           //log.info("Connecting to " + sumaServer + " on port " + sumaPort);
            Socket client = new Socket(sumaServer, sumaPort);
            
-           log.info("Just connected to " + client.getRemoteSocketAddress());
+           //log.info("Just connected to " + client.getRemoteSocketAddress());
            
            OutputStream outToServer = client.getOutputStream();
            //log.info("Output stream get From Server..");
@@ -567,10 +567,10 @@ public class SumaProcessor {
            DataOutputStream out = new DataOutputStream(outToServer);
            //log.info("Output stream created from local to server..");
            
-           log.info("Try to communicate to with localsocket : " + client.getLocalSocketAddress());
+           //log.info("Try to communicate to with localsocket : " + client.getLocalSocketAddress());
            
            
-            log.info("Try writing to the stream..");
+            //log.info("Try writing to the stream..");
             try {
                 
                 // 1.Message Header // 1.1 Session ID, 2 Byte, maksium 65536, int 
@@ -586,7 +586,7 @@ public class SumaProcessor {
                 if (sessionHex.length() == 2) { sessionHex = "00"+sessionHex; }
                 if (sessionHex.length() == 1) { sessionHex = "000"+sessionHex; }
                 
-                log.info("Session ID Hex Format Final = 0x" + sessionHex.toUpperCase());
+                //log.info("Session ID Hex Format Final = 0x" + sessionHex.toUpperCase());
                 
                 byte[] sessionid_bytes = hex2Byte(sessionHex);                
                 //log.info("Session ID parameter, Length : " + sessionid_bytes.length + " bytes ");
@@ -604,7 +604,7 @@ public class SumaProcessor {
                 
                 if (CAS_VERHex.length() == 1) { CAS_VERHex = "0"+CAS_VERHex; }
                 
-                log.info("CAS_VER Hex Format = 0x" + CAS_VERHex.toUpperCase());
+                //log.info("CAS_VER Hex Format = 0x" + CAS_VERHex.toUpperCase());
                 
                 byte[] CAS_VER_bytes = hex2Byte(CAS_VERHex);
                 //log.info("CAS_VER length : " + CAS_VER_bytes.length + " bytes ");
@@ -622,7 +622,7 @@ public class SumaProcessor {
                 
                 if (commandTypeHex.length() == 1) { commandTypeHex = "0"+commandTypeHex; }
                 
-                log.info("commandType Hex Format = 0x" + commandTypeHex.toUpperCase());
+                //log.info("commandType Hex Format = 0x" + commandTypeHex.toUpperCase());
                 
                 byte[] commandTypeBytes = hex2Byte(commandTypeHex);                               
                 //log.info("commandTypeBytes Length : " + commandTypeBytes.length + " bytes" );
@@ -647,7 +647,7 @@ public class SumaProcessor {
                 if (cardNumberHex.length() == 2) {cardNumberHex = "000000"+cardNumberHex;}
                 if (cardNumberHex.length() == 1) {cardNumberHex = "0000000"+cardNumberHex;}
                 
-                log.info("Card Number Hex Format Final = 0x" + cardNumberHex);
+                //log.info("Card Number Hex Format Final = 0x" + cardNumberHex);
                 
                 byte[] cardNumberBytes_Conf = hex2Byte(cardNumberHex);
                 
@@ -670,7 +670,7 @@ public class SumaProcessor {
                 if (data_length_hex.length() == 2) { data_length_hex = "00"+data_length_hex;}
                 if (data_length_hex.length() == 3) { data_length_hex = "0"+data_length_hex;}
                 
-                log.info("data_length Hex Format = 0x" + data_length_hex);
+                //log.info("data_length Hex Format = 0x" + data_length_hex);
                 
                 byte[] data_length_bytes = hex2Byte(data_length_hex);  
                 
@@ -699,7 +699,7 @@ public class SumaProcessor {
                 //log.info("");        
 
                 out.write(finalMessage);
-                log.info("Message sent to CAS");
+                //log.info("Message sent to CAS");
                 
             } catch (IOException e) {
 
@@ -717,7 +717,7 @@ public class SumaProcessor {
             
             try {
                                   
-                byte[] BufferMsg = new byte[255];   // 1Kb
+                byte[] BufferMsg = new byte[127];   // 1Kb
 
                 in.read(BufferMsg);
                 log.info("Server response , LENGTH " + BufferMsg.length  + ", Mesage = " +  "0x"+byte2hex(BufferMsg).toUpperCase() );
